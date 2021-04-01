@@ -16,9 +16,12 @@
                 <div class="p-3"><strong>1,191 </strong>following</div>
             </div>
             <div class="pt-3">
-                <strong>Katedra za e-poslovanje</strong>
+                <strong>{{$user->profile->title}}</strong>
             </div>
-            <div>⬇️ Prijava za HandsOn radionice na linku ⬇️ talk.elab.rs/b/dus-trd-rjc</div>
+            <div>
+                {{$user->profile->description}}
+            </div>
+            <div> <a href="">{{$user->profile->url}}</a></div>
         </div>
     </div>
 
