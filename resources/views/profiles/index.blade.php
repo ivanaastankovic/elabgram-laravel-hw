@@ -7,8 +7,9 @@
             <img src="/images/elabLogo.jpg" alt="" style="height: 150px;border:3px solid #f6f6f6;border-radius: 50%">
         </div>
         <div class="col-8 pt-5">
-            <div>
+            <div class="d-flex justify-content-between align-items-baseline">
                 <h1>{{$user -> username}}</h1>
+                <a href="#">Add new post</a>
             </div>
             <div style="display: flex;">
                 <div class="p-3"><strong>114 </strong>posts</div>
