@@ -14,12 +14,13 @@ class ProfilesController extends Controller
     public function edit(User $user) //editovanje posta
     {
         //$user = \App\User::findOrFail($user);
+        $this->authorize('update', $user->profile);
         return view('profiles.edit', compact('user')); //putem compact() saljemo id user-a
     }
 
     public function update(User $user)
-    {
-        
+    { 
+        $this->authorize('update', $user->profile);
         $data = request()->validate([
             'title' => 'required',
             'description' => 'required',
