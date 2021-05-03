@@ -12,16 +12,16 @@
 */
 
 use App\Http\Controllers\ProfilesController;
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use Illuminate\Support\Facades\Route;
 
 Auth::routes();
-
+Route::post('follow/{user}', 'FollowsController@store');
+Route::get('/', 'PostsController@index');
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
 Route::get('/p/create','PostsController@create');   //bitan nam je redosled ruta
 Route::post('/p','PostsController@store'); 
 Route::get('/p/{post}','PostsController@show');
 Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
 Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update');
+
+

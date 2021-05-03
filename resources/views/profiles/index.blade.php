@@ -4,22 +4,26 @@
 <div class="container">
     <div class="row">
         <div class="col-3 p-5" style="margin-right: 25px;">
-            <img src="/images/elabLogo.jpg" alt="" style="height: 150px;border:3px solid #f6f6f6;border-radius: 50%">
+            <img src="{{$user->profile->profileImage()}}" alt="" class="rounded-circle w-100">
         </div>
         <div class="col-8 pt-5">
-            <div class="d-flex justify-content-between align-items-baseline">
-                <h1>{{$user -> username}}</h1>
+            <div class="d-flex justify-content-between align-items-baseline ">
+                <div class="d-flex align-items-center pb-3">
+                    <div class="h4">{{$user -> username}}</div>
+                    <follow-button user-id="{{$user->id}}" follows="{{$follows}}"></follow-button> <!--Follow komponenta-->
+                </div>
                 @can('update', $user->profile)
                 <a href="/p/create">Add new post</a>
                 @endcan
             </div>
+
             @can('update', $user->profile)
             <a href="/profile/{{ $user->id }}/edit">Edit Profile</a>
             @endcan
             <div style="display: flex;">
                 <div class="p-3"><strong> {{$user->posts->count()}} </strong>posts</div>
-                <div class="p-3"><strong>1,258 </strong>followers</div>
-                <div class="p-3"><strong>1,191 </strong>following</div>
+                <div class="p-3"><strong>{{$user->profile->followers->count()}}</strong>followers</div>
+                <div class="p-3"><strong> {{$user->following->count()}}</strong>following</div>
             </div>
             <div class="pt-3">
                 <strong>{{$user->profile->title}}</strong>

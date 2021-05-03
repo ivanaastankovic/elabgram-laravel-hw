@@ -4,12 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
-
+use App\Post;
 class PostsController extends Controller
 {
     public function __construct() // for required authorisation; svaka ruta koju korisnik zatrazi iz ovog kontrolera ce zahtevati autorizaciju
     {
         $this->middleware('auth');
+    }
+
+    public function index()
+    {//za prikaz home page-a, tj. svih postova ljudi koje pratimo
+        $users = auth()->user()->following()->pluck('profiles.user_id'); //uzmi id usera iz tabele profiles, to su svi profili koje ulogovani korisnik prati
+        $posts=Post::whereIn('user_id',$users)->latest()->get();
+        return view('posts.index', compact('posts'));
     }
     public function create()
     {
@@ -39,6 +46,4 @@ class PostsController extends Controller
     {
         return view('posts.show', compact('post')); //compact povezuje i salje $post 
     }
-
-   
 }
