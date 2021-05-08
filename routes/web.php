@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfilesController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
+Route::get('/search','ProfilesController@search');
 Route::post('follow/{user}', 'FollowsController@store');
 Route::get('/', 'PostsController@index');
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
