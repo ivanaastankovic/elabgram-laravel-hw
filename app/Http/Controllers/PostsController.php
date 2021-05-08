@@ -45,11 +45,8 @@ class PostsController extends Controller
 
     public function show(\App\Post $post) //prikaz posta 
     {
-        return view('posts.show', compact('post')); //compact povezuje i salje $post 
+        return view('posts.show', compact('post','follows')); //compact povezuje i salje $post 
     }
 
-    public function search(Request $request)
-    {
-        $search = $request->get('search');
-    }
+   
 }
